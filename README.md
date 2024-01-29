@@ -13,11 +13,7 @@ composer install
 
 ## Build assets
 
-You must build theme assets in order to access your site.  Running the first build:
-
-- Run `npm install` from the theme directory
-- Update `bud.config.js` with your local dev URL
-- `npm run build` -- Compile assets
+## Notes/Links
 
 ## Ecosystem
 <p>
@@ -25,19 +21,5 @@ You must build theme assets in order to access your site.  Running the first bui
     <img alt="Bedrock" src="https://cdn.roots.io/app/uploads/logo-bedrock.svg" height="50">
   </a>
   <br>
-  <br>
-  <a href="https://roots.io/acorn/">
-    <img alt="Acorn" src="https://cdn.roots.io/app/uploads/logo-acorn.svg" height="50">
-  </a>
-  <br>
-  <br>
-  <a href="https://roots.io/sage/">
-    <img alt="Sage" src="https://cdn.roots.io/app/uploads/logo-sage.svg" height="50">
-  </a>
-  <br>
-  <br>
-  <a href="https://bud.js.org/">
-    <img alt="bud.js" src="https://cdn.roots.io/app/uploads/logo-bud.svg" height="50">
-  </a>
   <br>
 </p>
