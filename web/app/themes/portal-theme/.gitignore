@@ -1,3 +1,8 @@
 /composer.lock
 /vendor/
 /wordpress/
+
+# compilers
+.DS_Store
+node_modules/
+dist/

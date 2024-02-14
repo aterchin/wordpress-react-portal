@@ -15,6 +15,10 @@ class StarterSite extends Site {
 		add_filter( 'timber/twig', array( $this, 'add_to_twig' ) );
 		add_filter( 'timber/twig/environment/options', [ $this, 'update_twig_environment_options' ] );
 
+    add_action( 'wp_enqueue_scripts', [$this, 'styles'] );
+    add_action( 'wp_enqueue_scripts', [$this, 'scripts'] );
+    add_filter( 'upload_mimes', [$this, 'upload_mimes'], 99 );
+
 		parent::__construct();
 	}
 
@@ -142,4 +146,50 @@ class StarterSite extends Site {
 
 	    return $options;
 	}
+
+  /** Enqueue custom stylesheets
+   *
+   */
+  public function styles() {
+
+		// Libraries, non-compiles
+
+    wp_enqueue_style('startersite-googlefonts', 'https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400;1,600&display=swap', false); 
+
+		// Custom
+		$deps = ['startersite-googlefonts'];
+    $v = ( file_exists(TEMPLATE_DIR . '/dist/style.css') ) ? filemtime(TEMPLATE_DIR . '/dist/styles.css') : null;
+    wp_enqueue_style('startersite-styles', TEMPLATE_DIR_URI . '/dist/styles.css', $deps, $v);
+
+    // wp_enqueue_style('startersite-bootstrap-print',
+    //   'https://cdn.jsdelivr.net/npm/bootstrap-print-css/css/bootstrap-print.min.css',
+    //   [], false, 'print');
+  }
+
+  /** Enqueue custom javascripts
+   *
+   */
+  public function scripts() {
+
+		// Libraries, non-compiles
+
+    // Custom build of modernizr to help with .webp detection
+    wp_enqueue_script('modernizr', TEMPLATE_DIR_URI . '/static/modernizr.js', [], null, false);
+
+		// Custom
+    $deps = [];
+    $v = ( file_exists(TEMPLATE_DIR . '/dist/main.js') ) ? filemtime(TEMPLATE_DIR . '/dist/main.bundle.js') : null;
+    wp_enqueue_script('startersite-scripts', TEMPLATE_DIR_URI . '/dist/main.bundle.js', $deps, $v);
+  }
+
+  /** Add additional filetypes for upload
+   *
+   */
+  public function upload_mimes( $mimes ) {
+    $mimes['svg'] = 'image/svg';
+    $mimes['svgz'] = 'image/svg+xml';
+  
+    return $mimes;
+  }
+
 }

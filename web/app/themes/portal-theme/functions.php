@@ -4,6 +4,9 @@
  * https://github.com/timber/starter-theme
  */
 
+define('TEMPLATE_DIR', get_template_directory());
+define('TEMPLATE_DIR_URI', get_template_directory_uri());
+
 // Load Composer dependencies.
 require_once __DIR__ . '/vendor/autoload.php';
 
