@@ -160,10 +160,6 @@ class StarterSite extends Site {
 		$deps = ['startersite-googlefonts'];
     $v = ( file_exists(TEMPLATE_DIR . '/dist/style.css') ) ? filemtime(TEMPLATE_DIR . '/dist/styles.css') : null;
     wp_enqueue_style('startersite-styles', TEMPLATE_DIR_URI . '/dist/styles.css', $deps, $v);
-
-    // wp_enqueue_style('startersite-bootstrap-print',
-    //   'https://cdn.jsdelivr.net/npm/bootstrap-print-css/css/bootstrap-print.min.css',
-    //   [], false, 'print');
   }
 
   /** Enqueue custom javascripts
@@ -178,7 +174,7 @@ class StarterSite extends Site {
 
 		// Custom
     $deps = [];
-    $v = ( file_exists(TEMPLATE_DIR . '/dist/main.js') ) ? filemtime(TEMPLATE_DIR . '/dist/main.bundle.js') : null;
+    $v = ( file_exists(TEMPLATE_DIR . '/dist/main.bundle.js') ) ? filemtime(TEMPLATE_DIR . '/dist/main.bundle.js') : null;
     wp_enqueue_script('startersite-scripts', TEMPLATE_DIR_URI . '/dist/main.bundle.js', $deps, $v);
   }
 

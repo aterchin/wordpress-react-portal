@@ -1,36 +1,61 @@
 'use strict'
 
+const webpack = require('webpack')
+require('dotenv').config({path: './.env'});
+
 const path = require('path')
 const autoprefixer = require('autoprefixer')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+
+const entryPoints = {
+  main: './src/js//main.js',
+  styles: './src/scss/styles.scss',
+};
 
 module.exports = {
   mode: 'development',
-  entry: './src/js/main.js',
+  entry: entryPoints,
   output: {
-    filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
-  },
-  devServer:{
-    static: path.resolve(__dirname, 'dist'),
-    port: 8080,
-    hot: true
+    filename: '[name].bundle.js',
   },
   plugins: [
-    new HtmlWebpackPlugin({ template: './src/index.html' })
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+    }),
+    new webpack.DefinePlugin({
+      "process.env": JSON.stringify(process.env),
+    }),
+    new BrowserSyncPlugin(
+      {
+        host: 'localhost',
+        port: 3000,
+        files: ['dist/*.css'],
+        injectCss: true,
+        proxy: process.env.PROXY_URL,
+        },
+        {
+          // prevent BrowserSync from reloading the page
+          // and let Webpack Dev Server take care of this
+          reload: false
+        }
+    ),
   ],
   module: {
     rules: [
       {
-        test: /\.(scss)$/,
+        test: /\.(js)$/,
+        exclude: /node_modules/,
+        use: ['babel-loader']
+      },
+      {
+        test: /\.s?[ac]ss$/i,
         use: [
-          {
-            // Adds CSS to the DOM by injecting a `<style>` tag
-            loader: 'style-loader'
-          },
+          MiniCssExtractPlugin.loader,
           {
             // Interprets `@import` and `url()` like `import/require()` and will resolve them
-            loader: 'css-loader'
+            loader: 'css-loader',
           },
           {
             // Loader for webpack to process CSS with PostCSS
@@ -45,7 +70,10 @@ module.exports = {
           },
           {
             // Loads a SASS/SCSS file and compiles it to CSS
-            loader: 'sass-loader'
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true,
+            }
           }
         ]
       }
