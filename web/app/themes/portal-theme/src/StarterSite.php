@@ -154,12 +154,12 @@ class StarterSite extends Site {
 
 		// Libraries, non-compiles
 
-    wp_enqueue_style('startersite-googlefonts', 'https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400;1,600&display=swap', false); 
+    //wp_enqueue_style('startersite-googlefonts', 'https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400;1,600&display=swap', false); 
 
 		// Custom
-		$deps = ['startersite-googlefonts'];
-    $v = ( file_exists(TEMPLATE_DIR . '/dist/style.css') ) ? filemtime(TEMPLATE_DIR . '/dist/styles.css') : null;
-    wp_enqueue_style('startersite-styles', TEMPLATE_DIR_URI . '/dist/styles.css', $deps, $v);
+		$deps = [];
+    $v = ( file_exists(TEMPLATE_DIR . '/dist/main.css') ) ? filemtime(TEMPLATE_DIR . '/dist/main.css') : null;
+    wp_enqueue_style('startersite-styles', TEMPLATE_DIR_URI . '/dist/main.css', $deps, $v);
   }
 
   /** Enqueue custom javascripts

@@ -27,17 +27,16 @@
 // Toggle global options
 $enable-gradients: true;
 $enable-shadows: true;
+//$enable-cssgrid: true;
 
 $offcanvas-box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175);
 
 // Include functions first
 @import "bootstrap/scss/functions";
 
-// Customize some defaults
-$body-color: #311;
-$body-bg: #fff;
-$border-radius: .4rem;
-$success: #7952b3;
+// Variables!
+@import 'abstracts/variables';
+@import 'abstracts/variables-bootstrap';
 
 // Required
 @import "bootstrap/scss/variables";
@@ -90,6 +89,21 @@ $success: #7952b3;
 //
 
 @import "icon-list";
+
+// Core files
+@import 'core/fonts';
+@import 'core/base';
+@import 'core/typography';
+@import 'core/utility';
+
+// Components
+@import 'components/buttons';
+
+// Layout
+
+// Sections
+
+// Pages
 
 body {
   padding: 1.5rem;

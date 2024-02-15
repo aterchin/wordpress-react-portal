@@ -10,7 +10,6 @@ const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
 const entryPoints = {
   main: './src/js//main.js',
-  styles: './src/scss/styles.scss',
 };
 
 module.exports = {
@@ -31,7 +30,7 @@ module.exports = {
       {
         host: 'localhost',
         port: 3000,
-        files: ['dist/*.css'],
+        files: ['views/**/*.twig', 'dist/*.css'],
         injectCss: true,
         proxy: process.env.PROXY_URL,
         },
