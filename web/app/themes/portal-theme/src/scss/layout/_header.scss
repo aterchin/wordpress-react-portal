@@ -1,0 +1,5 @@
+header {
+  nav {
+     @include gradient-radial($gray-300, $white);
+  }
+}

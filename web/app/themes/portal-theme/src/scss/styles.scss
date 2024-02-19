@@ -25,11 +25,9 @@
 // Place variable overrides first, then import just the styles you need. Note that some stylesheets are required no matter what.
 
 // Toggle global options
-$enable-gradients: true;
-$enable-shadows: true;
+//$enable-gradients: true;
+//$enable-shadows: true;
 //$enable-cssgrid: true;
-
-$offcanvas-box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175);
 
 // Include functions first
 @import "bootstrap/scss/functions";
@@ -46,6 +44,8 @@ $offcanvas-box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175);
 @import "bootstrap/scss/utilities";
 @import "bootstrap/scss/root";
 @import "bootstrap/scss/reboot";
+
+@import 'abstracts/maps';
 
 @import "bootstrap/scss/type";
 // @import "bootstrap/scss/images";
@@ -78,7 +78,7 @@ $offcanvas-box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175);
 // @import "bootstrap/scss/placeholders";
 
 // Helpers
-// @import "bootstrap/scss/helpers";
+@import "bootstrap/scss/helpers";
 
 // Utilities
 @import "bootstrap/scss/utilities/api";
@@ -94,12 +94,15 @@ $offcanvas-box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175);
 @import 'core/fonts';
 @import 'core/base';
 @import 'core/typography';
-@import 'core/utility';
+@import 'core/helpers';
 
 // Components
+//@import 'components/symbols';
 @import 'components/buttons';
 
 // Layout
+@import 'layout/html';
+@import 'layout/header';
 
 // Sections
 
