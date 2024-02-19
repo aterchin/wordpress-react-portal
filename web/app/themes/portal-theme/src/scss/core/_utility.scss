@@ -1,0 +1,137 @@
+.triangle {
+  width: 0;
+  height: 0;
+  display: inline-block;
+  position: relative;
+  bottom: 1px;
+  line-height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: $triangle-bwx $triangle-bwy;
+  &.right {
+    border-right-width: 0;
+    border-right-color: transparent;
+    border-left-color: $primary;
+  }
+  &.left {
+    border-left-width: 0;
+    border-left-color: transparent;
+    border-right-color: $primary;
+  }
+  &.up {
+    border-top-width: 0;
+    border-top-color: transparent;
+    border-bottom-color: $primary;
+  }
+  &.down {
+    border-bottom-width: 0;
+    border-bottom-color: transparent;
+    border-top-color: $primary;
+  }
+}
+
+.circle {
+  border-style: solid;
+  border-width: 2px;
+  border-color: $primary;
+  width: 22px;
+  height: 22px;
+  border-radius: 100%;
+  position: relative;
+  margin: 4px;
+  display: inline-block;
+  vertical-align: middle;
+  background: transparent;
+  cursor: pointer;
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  &.plus {
+    &:before,
+    &:after {
+      background: $body-color;
+    }
+    &:before {
+      width: 2px;
+      margin: 3px auto;
+    }
+    &:after {
+      height: 2px;
+      margin: auto 3px;
+    }
+  }
+  &.minus {
+    &:before,
+    &:after {
+      background: $body-color;
+      margin: auto 3px;
+      height: 2px;
+    }
+    &:before {
+      width: 0px;
+      margin: 3px auto;
+    }
+  }
+  &.cross {
+    &:before,
+    &:after {
+      background: $body-color;
+      margin: auto 4px;
+      height: 2px;
+      transform:rotateZ(45deg);
+    }
+    &:after {
+      transform: rotateZ(-45deg);
+    }
+  }
+}
+
+.angle {
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  border-color: inherit;
+  display: inline-block;
+  padding: 3px;
+  position: relative;
+  bottom: 1px;
+  line-height: 0;
+  cursor: pointer;
+  &.angle-md {
+    border-width: 0 3px 3px 0;
+    padding: 5px;
+  }
+  &.angle-lg {
+    border-width: 0 4px 4px 0;
+    padding: 12px;
+  }
+  &.angle-primary {
+    border-color: $primary;
+  }
+  &.angle-secondary {
+    border-color: $secondary;
+  }
+  &.right {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+  }
+  &.left {
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+  }
+  &.up {
+    bottom: -1px;
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+  }
+  &.down {
+    bottom: 3px;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+  }
+}

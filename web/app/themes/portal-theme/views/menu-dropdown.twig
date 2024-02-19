@@ -1,0 +1,27 @@
+<ul class="dropdown-menu{{ items|length == loop.index ? ' dropdown-menu-lg-end' }}">
+  {% for child in item.children %}
+    <li class="{{ child.classes | join(' ') }}">
+      {% if child.link == '#' %}
+        <div class="nav-heading">
+          {{ child.title }}
+      </div>
+      {% else %}
+        <a href="{{ child.link }}" class="dropdown-item{{ child.current ? ' active' }}"
+          {{ child.is_target_blank ? 'target="_blank"' }}
+          >{{ child.title }}
+          </a>
+      {% endif %}
+      {% if child.children %}
+        <ul class="sub-menu nav-dropdown nav-dropdown-default">
+          {% for sub in child.children %}
+            <li>
+              <a href="{{ sub.link }}" class="dropdown-item{{ sub.current ? ' active' }}"
+                {{ sub.is_target_blank ? 'target="_blank"' }}
+              >{{ sub.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>

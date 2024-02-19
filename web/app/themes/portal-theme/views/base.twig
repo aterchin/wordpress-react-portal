@@ -11,14 +11,49 @@
 		<a class="skip-link screen-reader-text" href="#content">{{ _e( 'Skip to content') }}</a>
 		<header class="header" >
 			{% block header %}
-				<div class="wrapper">
-					<h1 class="hdr-logo" role="banner">
-						<a class="hdr-logo-link" href="{{site.url}}" rel="home">{{site.name}}</a>
-					</h1>
-					<nav id="nav-main" class="nav-main" role="navigation">
-						{% include "menu.twig" with {'items': menu.get_items} %}
-					</nav><!-- #nav -->
-				</div>
+        <nav id="nav-main" class="nav-main navbar navbar-expand-lg web/app/themes/describe-patch fixed-top bg-light" role="navigation">
+          <div class="container justify-content-between">
+            <div class="navbar-brand text-white">
+							<a class="hdr-logo-link d-inline-block" href="{{site.url}}" rel="home">
+            		{% if site_logo %}
+              		<img src="{{site_logo}}" alt="Site logo" class="img-fluid" loading="lazy" />
+            		{% else %}
+              		{{site.name}}
+            		{% endif %}
+          		</a>
+						</div>
+          	<button
+            	class="navbar-toggler"
+            	type="button"
+							data-bs-toggle="collapse" 
+							data-bs-target="#navbarCollapseLg"
+							aria-controls="navbarCollapseLg"
+            	aria-expanded="false"
+            	aria-label="Toggle navigation"
+          	>
+            	<span class="navbar-toggler-icon"></span>
+            	<span class="close-icon"></span>
+          	</button>
+						<div class="collapse navbar-collapse" tabindex="-1" id="navbarCollapseLg" aria-labelledby="navbarCollapseLgLabel">
+        			{% include "menu.twig" with 
+          			{
+          			'menu': menu_primary,
+          			'items': menu_primary.get_items,
+          			'classes': 'navbar-nav primary-nav navbar-nav-scroll order-lg-last',
+          			}
+							%}
+        			{% include "menu.twig" with 
+          			{
+          			'menu': menu_secondary,
+          			'items': menu_secondary.get_items,
+          			'classes': 'navbar-nav secondary-nav order-lg-first',
+          			}
+        			%}
+						</div>
+      			{# <div class="navbar-collapse offcanvas-collapse bg-white flex-column align-items-end me-auto">
+						</div> #}
+					</div>
+				</nav><!-- #nav -->
 			{% endblock %}
 		</header>
 
@@ -37,7 +72,7 @@
 		</section>
 
 		{% block footer %}
-			<footer id="footer">
+			<footer id="footer" class="position-absolute bottom-0 w-100 mb-4">
 				{% include 'footer.twig' %}
 			</footer>
 			{{ function('wp_footer') }}

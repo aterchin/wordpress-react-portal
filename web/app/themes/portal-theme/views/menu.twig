@@ -1,9 +1,25 @@
 {% if menu %}
-	<ul>
+	<ul class="{{ classes ?: '' }}" id="{{ menu.slug ~ '-nav' }}">
 	{% for item in items %}
-		<li class="{{ item.classes | join(' ') }}">
-			<a target="{{ item.target }}" href="{{ item.link }}">{{ item.title }}</a>
-			{% include "menu.twig" with {'items': item.children} %}
+		<li class="nav-item {{ item.classes | join(' ') }} {{ item.children ? 'dropdown' }}">
+			{% if item.children %}
+      	<a class="nav-link dropdown-toggle{{ item.current ? ' active' }}" href="#"
+					data-bs-toggle="dropdown"
+					role="button"
+					aria-expanded="false"
+					{{ item.is_target_blank ? 'target="_blank"' }}
+        	>{{ item.title }}
+      	</a>
+			{% else %}
+      	<a class="nav-link{{ item.current ? ' active' }}" href="{{ item.link }}">{{ item.title }}</a>
+			{% endif %}
+			{% if item.children %}
+				{% include "menu-dropdown.twig" with
+					{
+						'items': item.children,
+					}
+				%}
+			{% endif %}
 		</li>
 	{% endfor %}
 	</ul>

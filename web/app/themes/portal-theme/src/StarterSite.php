@@ -8,6 +8,7 @@ use Timber\Site;
 class StarterSite extends Site {
 	public function __construct() {
 		add_action( 'after_setup_theme', array( $this, 'theme_supports' ) );
+		add_action( 'after_setup_theme', array( $this, 'register_menus' ) );
 		add_action( 'init', array( $this, 'register_post_types' ) );
 		add_action( 'init', array( $this, 'register_taxonomies' ) );
 
@@ -21,6 +22,17 @@ class StarterSite extends Site {
 
 		parent::__construct();
 	}
+
+	/**
+	 * This is where you can register custom nav menus.
+	 */
+  public function register_menus() {
+    register_nav_menus([
+      'menu_primary' => 'Primary Menu',
+      'menu_secondary' => 'Secondary Menu',
+      'menu_footer' => 'Footer Menu',
+    ]);
+  }
 
 	/**
 	 * This is where you can register custom post types.
@@ -42,10 +54,9 @@ class StarterSite extends Site {
 	 * @param string $context context['this'] Being the Twig's {{ this }}.
 	 */
 	public function add_to_context( $context ) {
-		$context['foo']   = 'bar';
-		$context['stuff'] = 'I am a value set in your functions.php file';
-		$context['notes'] = 'These values are available everytime you call Timber::context();';
-		$context['menu']  = Timber::get_menu();
+		$context['site_logo'] = wp_get_attachment_image_url( get_theme_mod( 'custom_logo' ), 'full' );
+    $context['menu_primary'] = Timber::get_menu('Primary Menu');
+	  $context['menu_secondary'] = Timber::get_menu('Secondary Menu');
 		$context['site']  = $this;
 
 		return $context;
@@ -103,6 +114,25 @@ class StarterSite extends Site {
 		);
 
 		add_theme_support( 'menus' );
+
+    /*
+     * Add support for core custom logo.
+     *
+     * @link https://codex.wordpress.org/Theme_Logo
+     */
+    $logo_width  = 300;
+    $logo_height = 100;
+
+    add_theme_support(
+      'custom-logo',
+      [
+        'height'               => $logo_height,
+        'width'                => $logo_width,
+        'flex-width'           => true,
+        'flex-height'          => true,
+        'unlink-homepage-logo' => true,
+      ]
+    );
 	}
 
 	/**
@@ -182,7 +212,7 @@ class StarterSite extends Site {
    *
    */
   public function upload_mimes( $mimes ) {
-    $mimes['svg'] = 'image/svg';
+    $mimes['svg'] = 'image/svg+xml';
     $mimes['svgz'] = 'image/svg+xml';
   
     return $mimes;
