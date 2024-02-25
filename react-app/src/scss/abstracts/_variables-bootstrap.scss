@@ -1,0 +1,64 @@
+// Customize default variables before importing Bootstrap's Sass files
+//
+// The variables you SET in this file should be Bootstrap defaults only.
+// Other variables which you give custom names to should be in '_variables.scss'.
+
+$font-family-base: 'Inter Variable', Avenir, Helvetica, Arial, sans-serif;
+$font-family-base-bold: $font-family-base;
+$headings-font-family: $font-family-base;
+$heading_font: $headings-font-family;
+$headings-font-weight: 400;
+$font-size-base: 1rem;
+$font-weight-normal: 400;
+$font-weight-bold: 700;
+
+//$h1-font-size: $font-size-base * 3.2;
+//$h2-font-size: $font-size-base * 2;
+//$h3-font-size: $font-size-base * 1.75;
+$small-font-size: 0.7425rem; //11.8px, base 16;
+
+$paragraph-margin-bottom: $font-size-base * 1.15;
+
+$black: #000;
+$white: #fff;
+$primary: $color-woodland;
+$secondary: lighten($black, 20%);
+$gray-200: #e9ecef;
+$body-color: $color-thatch-green;
+$headings-color: $color-sage;
+$link-color: $primary;
+
+$component-active-color: $white;
+$component-active-bg: $black;
+
+$nav-link-font-size: $small-font-size;
+$navbar-light-color: $black;
+$navbar-light-hover-color: $primary;
+$navbar-light-active-color: $primary;
+
+$border-radius: 0;
+$border-radius-sm: $border-radius;
+$border-radius-lg: $border-radius;
+$btn-border-radius: $border-radius;
+$btn-border-radius-sm: $border-radius;
+$btn-border-radius-lg: $border-radius;
+
+$pagination-color: $black;
+$pagination-border-color: $black;
+$pagination-hover-color: $black;
+$pagination-hover-bg: $gray-200;
+$pagination-hover-border-color: $black;
+
+// scss-docs-start spacer-variables-maps
+$spacer: 1rem;
+$spacers: (
+  0: 0,
+  1: $spacer * .25,
+  2: $spacer * .5,
+  3: $spacer,
+  4: $spacer * 1.5,
+  5: $spacer * 3,
+  6: $spacer * 5
+);
+
+

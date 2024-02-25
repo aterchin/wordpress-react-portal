@@ -1,0 +1,7 @@
+.btn-primary {
+   @include button-variant($primary, $primary);
+}
+
+.btn-outline-primary {
+  @include button-outline-variant($primary);
+}

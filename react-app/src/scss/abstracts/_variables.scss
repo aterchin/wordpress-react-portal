@@ -1,0 +1,17 @@
+// Add your custom variables here.  Use these to override the Bootstrap imports.
+$color-thatch-green: #2F3413;
+$color-woodland: #47512A;
+$color-sage: #9EA587;
+$color-potters-clay: #845d37;
+$color-juniper: #6D9292;
+
+$custom-colors: (
+  "thatch-green": $color-thatch-green,
+  "woodland": $color-woodland,
+  "sage": $color-sage,
+  "potters-clay": $color-potters-clay,
+  "juniper": $color-juniper,
+);
+
+$triangle-bwx: 7px;
+$triangle-bwy: 7px;
