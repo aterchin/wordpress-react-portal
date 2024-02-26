@@ -1,19 +1,21 @@
 import { useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import Spinner from './Spinner';
+import useResources from '../hooks/useResources';
+import ResourceList from './ResourceList';
 
 function App() {
   const [loading, setLoading] = useState(false);
-  const totalPosts = 5;
+  const [resources, totalPages, totalPosts] = useResources({ setLoading });
 
   return (
     <Container fluid='lg'>
       <Row className='mb-4'>
         <Col lg={3} className='mb-4'>
-          Parent category / Brand
+          Parent category
         </Col>
         <Col lg={9}>
-          Categories: Banner / Image / In Office Material / Poster /
+          Categories: CAT1 / CAT2 / CAT3 / CAT4 / ...
           <Row className='g-0 mb-5 align-items-end'>
             <Col sm={8} md={6}>
               Buttons (most recent / most downloaded)
@@ -29,7 +31,7 @@ function App() {
               {totalPosts > 0 ? (
                 <>
                   <h6>{totalPosts} total posts found</h6>
-                  Posts pulled from WP JSON api here..... <br />
+                  <ResourceList resources={resources} />
                   Pagination pulled from WP JSON api here...
                 </>
               ) : (
