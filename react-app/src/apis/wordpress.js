@@ -1,7 +1,7 @@
-import axios from 'axios';
+import axios from "axios";
 
 const wordpress = axios.create({
-  baseURL: import.meta.env.VITE_API_URL + '/wp-json/wp/v2',
+  baseURL: import.meta.env.VITE_API_URL + "/wp-json/wp/v2",
 });
 
 const responseHandler = (response) => {

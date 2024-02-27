@@ -1,4 +1,4 @@
-import ResourceItem from './ResourceItem';
+import ResourceItem from "./ResourceItem";
 
 function ResourceList({ resources }) {
   // we want total items on the page for item styling purposes
@@ -9,6 +9,6 @@ function ResourceList({ resources }) {
     return <ResourceItem key={item.id} item={item} totalItems={totalItems} />;
   });
 
-  return <div className='post-grid'>{items}</div>;
+  return <div className="post-grid">{items}</div>;
 }
 export default ResourceList;
