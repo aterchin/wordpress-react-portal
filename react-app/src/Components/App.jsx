@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import Spinner from './Spinner';
 import useResources from '../hooks/useResources';
+import Spinner from './Spinner';
 import ResourceList from './ResourceList';
+import Pagination from './Pagination';
 
 function App() {
   const [loading, setLoading] = useState(false);
-  const [resources, totalPages, totalPosts] = useResources({ setLoading });
+  const [currentPage, setCurrentPage] = useState(1);
+  const [resources, totalPages, totalPosts] = useResources({ setLoading, currentPage, setCurrentPage });
 
   return (
     <Container fluid='lg'>
@@ -32,7 +34,7 @@ function App() {
                 <>
                   <h6>{totalPosts} total posts found</h6>
                   <ResourceList resources={resources} />
-                  Pagination pulled from WP JSON api here...
+                  <Pagination totalPages={totalPages} currentPage={currentPage} setCurrentPage={setCurrentPage} />
                 </>
               ) : (
                 ''

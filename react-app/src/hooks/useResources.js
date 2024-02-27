@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import wordpress from '../apis/wordpress';
 
-function useResources({ setLoading }) {
+function useResources({ setLoading, currentPage, setCurrentPage }) {
   const [resources, setResources] = useState([]);
   const [totalPosts, setTotalPosts] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
