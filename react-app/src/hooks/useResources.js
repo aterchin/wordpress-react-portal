@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import wordpress from "../apis/wordpress";
 
-function useResources({ setLoading, currentPage }) {
+function useResources({ setLoading, currentPage, selectedBrands, selectedCategories }) {
   const [resources, setResources] = useState([]);
   const [totalPosts, setTotalPosts] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
@@ -13,6 +13,17 @@ function useResources({ setLoading, currentPage }) {
 
   const getResources = async () => {
     let params = {};
+    const brands = selectedBrands;
+    const categories = selectedCategories;
+    if (brands.length) {
+      params.brands = brands.join(",");
+    }
+    if (categories.length) {
+      params.categories = categories.join(",");
+    }
+
+    params._embed = "wp:term,wp:featuredmedia";
+    params.page = currentPage;
 
     params.page = currentPage;
     setLoading(true);

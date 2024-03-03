@@ -4,24 +4,30 @@ import useResources from "../hooks/useResources";
 import Spinner from "./Spinner";
 import ResourceList from "./ResourceList";
 import Pagination from "./Pagination";
+import BrandList from "./BrandList";
+import CategoryList from "./CategoryList";
 
 function App() {
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedBrands, setSelectedBrands] = useState([]);
+  const [selectedCategories, setSelectedCategories] = useState([]);
   const [resources, totalPages, totalPosts] = useResources({
     setLoading,
     currentPage,
     setCurrentPage,
+    selectedBrands,
+    selectedCategories,
   });
 
   return (
     <Container fluid="lg">
       <Row className="mb-4">
         <Col lg={3} className="mb-4">
-          Parent category
+          <BrandList onBrandSelect={setSelectedBrands} />
         </Col>
         <Col lg={9}>
-          Categories: CAT1 / CAT2 / CAT3 / CAT4 / ...
+          <CategoryList onCategorySelect={setSelectedCategories} />
           <Row className="g-0 mb-5 align-items-end">
             <Col sm={8} md={6}>
               Buttons (most recent / most downloaded)

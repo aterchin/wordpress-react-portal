@@ -13,7 +13,14 @@ function ResourceItem({ item, totalItems }) {
     ? truncateString(resource_title, 25)
     : truncateString(item_title, 25);
 
-  let terms = ["cat", "dog", "fish"];
+  let terms = [];
+  if (item._embedded["wp:term"] === undefined) {
+    return "";
+  }
+  item._embedded["wp:term"].forEach((tax) => {
+    let x = tax.map((term) => term.name);
+    terms.push(...x);
+  });
   terms = terms.join(", ");
 
   return (
