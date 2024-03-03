@@ -1,12 +1,7 @@
 import { useState, useEffect } from "react";
 import wordpress from "../apis/wordpress";
 
-function useResources({
-  setLoading,
-  currentPage,
-  selectedBrands,
-  selectedCategories,
-}) {
+function useResources({ setLoading, currentPage, selectedBrands, selectedCategories, postsSort }) {
   const [resources, setResources] = useState([]);
   const [totalPosts, setTotalPosts] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
@@ -14,7 +9,7 @@ function useResources({
   useEffect(() => {
     // console.log('Main effect');
     getResources(currentPage);
-  }, [currentPage, selectedBrands, selectedCategories]);
+  }, [currentPage, selectedBrands, selectedCategories, postsSort]);
 
   const getResources = async () => {
     let params = {};
@@ -26,7 +21,17 @@ function useResources({
     if (categories.length) {
       params.categories = categories.join(",");
     }
-
+    params.order = "desc";
+    switch (postsSort) {
+      case 1:
+        params.orderby = "date";
+        params.order = "desc";
+        break;
+      case 2:
+        params.orderby = "download_count";
+        params.order = "desc";
+        break;
+    }
     params._embed = "wp:term,wp:featuredmedia";
     params.page = currentPage;
 
