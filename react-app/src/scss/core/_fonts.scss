@@ -1,0 +1,35 @@
+@font-face {
+  font-family: "FuturaStd-Book";
+  font-style: normal;
+  font-weight: normal;
+  src: url("/fonts/FuturaStd-Book.ttf") format("truetype"),
+       url("/fonts/FuturaStd-Book.woff2") format("woff2"),
+       url("/fonts/FuturaStd-Book.woff") format("woff"),
+}
+
+@font-face {
+  font-family: "FuturaStd-Bold";
+  font-style: normal;
+  font-weight: normal;
+  src: url("/fonts/FuturaStd-Bold.ttf") format("truetype"),
+       url("/fonts/FuturaStd-Bold.woff2") format("woff2"),
+       url("/fonts/FuturaStd-Bold.woff") format("woff"),
+}
+
+@font-face {
+  font-family: "FuturaStd-Medium";
+  font-style: normal;
+  font-weight: normal;
+  src: url("/fonts/FuturaStd-Medium.ttf") format("truetype"),
+       url("/fonts/FuturaStd-Medium.woff2") format("woff2"),
+       url("/fonts/FuturaStd-Medium.woff") format("woff"),
+}
+
+@font-face {
+  font-family: "Inconsolata";
+  font-style: normal;
+  font-weight: normal;
+  src: url("../assets/fonts/Inconsolata.ttf") format("truetype"),
+       url("../assets/fonts/Inconsolata.woff2") format("woff2"),
+       url("../assets/fonts/Inconsolata.woff") format("woff"),
+}

@@ -3,8 +3,8 @@
 // The variables you SET in this file should be Bootstrap defaults only.
 // Other variables which you give custom names to should be in '_variables.scss'.
 
-$font-family-base: 'Inter Variable', Avenir, Helvetica, Arial, sans-serif;
-$font-family-base-bold: $font-family-base;
+$font-family-base: "FuturaStd-Book", sans-serif;
+$font-family-base-bold: "FuturaStd-Bold", sans-serif;
 $headings-font-family: $font-family-base;
 $heading_font: $headings-font-family;
 $headings-font-weight: 400;
@@ -42,6 +42,7 @@ $border-radius-lg: $border-radius;
 $btn-border-radius: $border-radius;
 $btn-border-radius-sm: $border-radius;
 $btn-border-radius-lg: $border-radius;
+$btn-font-family: "Inconsolata", sans-serif;
 
 $pagination-color: $black;
 $pagination-border-color: $black;
