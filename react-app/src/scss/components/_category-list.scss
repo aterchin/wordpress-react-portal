@@ -1,0 +1,14 @@
+.category-list {
+  .btn-check:not(:checked) + .btn-outline-secondary {
+    &:hover {
+      background-color: $body-bg;
+      color: lighten($body-color, 10%);
+      border-color: lighten($body-color, 10%);
+    }
+  }
+  .btn-outline-secondary:focus,
+  .btn-check:focus + &,
+  &:focus {
+    box-shadow: 0 0 0 $input-btn-focus-width rgba($body-color, .3);
+  }
+}

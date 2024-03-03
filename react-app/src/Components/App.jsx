@@ -7,6 +7,7 @@ import Pagination from "./Pagination";
 import BrandList from "./BrandList";
 import CategoryList from "./CategoryList";
 import ButtonsSort from "./ButtonsSort";
+import ButtonsPerPage from "./ButtonsPerPage";
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -14,6 +15,7 @@ function App() {
   const [selectedBrands, setSelectedBrands] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [postsSort, setPostsSort] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(10);
   const [resources, totalPages, totalPosts] = useResources({
     setLoading,
     currentPage,
@@ -21,6 +23,7 @@ function App() {
     selectedBrands,
     selectedCategories,
     postsSort,
+    postsPerPage,
   });
 
   return (
@@ -36,7 +39,7 @@ function App() {
               <ButtonsSort onSortChange={setPostsSort} />
             </Col>
             <Col sm={4} md={6} className="d-flex justify-content-end">
-              Buttons (posts per page)
+              <ButtonsPerPage onPerPageChange={setPostsPerPage} />
             </Col>
           </Row>
           {loading ? (

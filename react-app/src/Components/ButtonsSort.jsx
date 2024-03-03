@@ -6,7 +6,7 @@ function ButtonsSort({ onSortChange }) {
   };
 
   return (
-    <div className="buttons-order-component">
+    <div className="buttons-sort">
       <ToggleButtonGroup type="radio" name="sort" defaultValue={1} onChange={handleChange}>
         <ToggleButton variant="outline-secondary" size="sm" id="sort-radio-1" value={1}>
           Most Recent
