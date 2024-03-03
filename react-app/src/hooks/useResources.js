@@ -1,7 +1,12 @@
 import { useState, useEffect } from "react";
 import wordpress from "../apis/wordpress";
 
-function useResources({ setLoading, currentPage, selectedBrands, selectedCategories }) {
+function useResources({
+  setLoading,
+  currentPage,
+  selectedBrands,
+  selectedCategories,
+}) {
   const [resources, setResources] = useState([]);
   const [totalPosts, setTotalPosts] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
@@ -9,7 +14,7 @@ function useResources({ setLoading, currentPage, selectedBrands, selectedCategor
   useEffect(() => {
     // console.log('Main effect');
     getResources(currentPage);
-  }, [currentPage]);
+  }, [currentPage, selectedBrands, selectedCategories]);
 
   const getResources = async () => {
     let params = {};
