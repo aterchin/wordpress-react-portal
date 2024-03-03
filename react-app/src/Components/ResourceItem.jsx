@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { decode } from "html-entities";
+import { truncateString } from "../utils";
 import { Card, Button } from "react-bootstrap";
 import ResourceImage from "./ResourceImage";
 import iconDownload from "../assets/dashicons--download.svg";
