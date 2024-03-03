@@ -5,10 +5,12 @@ import ResourceImage from "./ResourceImage";
 import iconDownload from "../assets/dashicons--download.svg";
 
 function ResourceItem({ item, totalItems }) {
-  const item_title = decode(item.title.rendered);
-
-  const download_count = 0; // get from custom db field
+  const { download_count, resource_title } = item.cmb2.resource_assets_metabox;
   const [downloads] = useState(download_count);
+  const item_title = decode(item.title.rendered);
+  const title = resource_title
+    ? truncateString(resource_title, 25)
+    : truncateString(item_title, 25);
 
   let terms = ["cat", "dog", "fish"];
   terms = terms.join(", ");
@@ -18,7 +20,7 @@ function ResourceItem({ item, totalItems }) {
       <Card>
         <ResourceImage item={item} totalItems={totalItems} />
         <Card.Body>
-          <Card.Title>{item_title}</Card.Title>
+          <Card.Title>{title}</Card.Title>
           <Card.Text className="terms small">
             <em>{terms}</em>
           </Card.Text>
