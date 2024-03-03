@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import wordpress from "../apis/wordpress";
-import { ToggleButtonGroup, ToggleButton } from "react-bootstrap";
+import { ToggleButtonGroup, ToggleButton, Button } from "react-bootstrap";
 
 function CategoryList({ onCategorySelect }) {
   const [categories, setCategories] = useState([]);
@@ -23,6 +23,11 @@ function CategoryList({ onCategorySelect }) {
     onCategorySelect(val);
   };
 
+  const clearAll = () => {
+    setValue([]);
+    onCategorySelect([]);
+  };
+
   const items = categories.map((item) => {
     return (
       <ToggleButton
@@ -42,6 +47,14 @@ function CategoryList({ onCategorySelect }) {
     <div className="category-list-wrapper mb-4">
       <ToggleButtonGroup type="checkbox" value={value} onChange={handleChange}>
         {items}
+        <Button
+          variant="outline-danger"
+          size="sm"
+          className="mb-2"
+          onClick={clearAll}
+        >
+          Clear all selected
+        </Button>
       </ToggleButtonGroup>
     </div>
   );
