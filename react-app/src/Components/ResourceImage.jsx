@@ -1,16 +1,23 @@
-import { CardImg } from 'react-bootstrap';
+import { CardImg } from "react-bootstrap";
 
 function ResourceImage({ item, totalItems }) {
-  //console.log('ResourceImage:', item);
+  if (item._embedded["wp:featuredmedia"] === undefined) {
+    return "";
+  }
 
-  return (
-    <a
-      className={`img-wrapper${totalItems > 2 ? ' reduced-height' : ''}`}
-      target="_blank" // for now/testing
-      href={item.link}
-    >
-      <CardImg variant="top" src="https://placehold.co/200" alt={item.title.rendered} />
-    </a>
-  );
+  if (item._embedded["wp:featuredmedia"]["0"].source_url) {
+    const src =
+      item._embedded["wp:featuredmedia"]["0"].media_details.sizes.medium
+        .source_url;
+    return (
+      <a
+        className={`img-wrapper${totalItems > 2 ? " reduced-height" : ""}`}
+        href={item.link}
+      >
+        <CardImg variant="top" src={src} alt={item.title.rendered} />
+      </a>
+    );
+  }
 }
+
 export default ResourceImage;
