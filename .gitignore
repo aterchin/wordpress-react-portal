@@ -25,3 +25,6 @@ web/.htaccess
 
 # WP-CLI
 wp-cli.local.yml
+
+# Custom plugins not in Wpackagist (or mine...)
+!web/app/plugins/wrp-resource
