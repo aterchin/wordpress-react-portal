@@ -5,9 +5,9 @@
  *
  * @return void
  */
-add_action( 'rest_api_init', 'wrp_resource_register_rest_routes' );
+add_action( 'rest_api_init', 'cpt_resource_register_rest_routes' );
 
-function wrp_resource_register_rest_routes() {
+function cpt_resource_register_rest_routes() {
 
   // We're not using a custom route for something which can easily be queried via standard
   // built-in wordpress routes.  For example, the below GET request will return the same thing
@@ -18,18 +18,18 @@ function wrp_resource_register_rest_routes() {
   // Example: get by query param 'category_name'.
 
   // -> GET custom posts of type 'resource' with category 'Billboards'
-  // /wp-json/wrp-resource/v1/resources?category_name=Billboards
+  // /wp-json/cpt-resource/v1/resources?category_name=Billboards
 
-  register_rest_route( 'wrp-resource/v1', 'resources', [
+  register_rest_route( 'cpt-resource/v1', 'resources', [
     'methods' => WP_REST_Server::READABLE,
-    'callback' => 'wrp_resource_example_get_category',
+    'callback' => 'cpt_resource_example_get_category',
     'permission_callback' => '__return_true'
   ] );
 
 
-  register_rest_route( 'wrp-resource/v1', 'download/(?P<id>\d+)', [
+  register_rest_route( 'cpt-resource/v1', 'download/(?P<id>\d+)', [
     'methods' => WP_REST_Server::READABLE,
-    'callback' => 'wrp_resource_download',
+    'callback' => 'cpt_resource_download',
     'permission_callback' => '__return_true',
     'args' => [
       'id' => [
@@ -47,7 +47,7 @@ function wrp_resource_register_rest_routes() {
  * @param WP_REST_Request     $request
  * @return array || string    Query response
  */
-function wrp_resource_example_get_category(WP_REST_Request $request) {
+function cpt_resource_example_get_category(WP_REST_Request $request) {
   $args = [
     'post_type' => ['resource'],
     'numberposts' => '100',
@@ -90,7 +90,7 @@ function wrp_resource_example_get_category(WP_REST_Request $request) {
   }
 }
 
-function wrp_resource_download( WP_REST_Request $request ) {
+function cpt_resource_download( WP_REST_Request $request ) {
 	$id = $request->get_param('id');
 
   // gets array of file URLs uploaded to post
@@ -108,11 +108,11 @@ function wrp_resource_download( WP_REST_Request $request ) {
     }
   }
 
-  $zip_filename = wrp_resource_tempnam();
+  $zip_filename = cpt_resource_tempnam();
 
-  $zip_created = wrp_resource_create_zip( $files, $zip_filename );
+  $zip_created = cpt_resource_create_zip( $files, $zip_filename );
 
-  $response = wrp_resource_serve_zip( $zip_filename );
+  $response = cpt_resource_serve_zip( $zip_filename );
 
   if ($response->status === 200) {
     // add to download count
@@ -139,7 +139,7 @@ function wrp_resource_download( WP_REST_Request $request ) {
  *
  * @return WP_REST_Response The REST response object to serve an file.
  */
-function wrp_resource_serve_zip( $path ) {
+function cpt_resource_serve_zip( $path ) {
   $response = new WP_REST_Response;
 
   if ( file_exists( $path ) ) {
@@ -173,7 +173,7 @@ function wrp_resource_serve_zip( $path ) {
     ] );
 
     // This filter will return our binary file!
-    add_filter( 'rest_pre_serve_request', 'wrp_resource_do_serve_zip', 0, 2 );
+    add_filter( 'rest_pre_serve_request', 'cpt_resource_do_serve_zip', 0, 2 );
   }
   else {
     // Return a simple "not-found" JSON response.
@@ -191,7 +191,7 @@ function wrp_resource_serve_zip( $path ) {
  * @return bool Returns true, if the zip was served; this will skip the
  *              default REST response logic.
  */
-function wrp_resource_do_serve_zip( $served, $result ) {
+function cpt_resource_do_serve_zip( $served, $result ) {
   $is_zip   = false;
   $zip_data = null;
 
@@ -223,9 +223,9 @@ function wrp_resource_do_serve_zip( $served, $result ) {
  *
  * @return void
  */
-add_action( 'rest_api_init', 'wrp_resource_handle_orderby' );
+add_action( 'rest_api_init', 'cpt_resource_handle_orderby' );
 
-function wrp_resource_handle_orderby() {
+function cpt_resource_handle_orderby() {
 
   // Add meta field to the allowed values of the REST API orderby parameter
 

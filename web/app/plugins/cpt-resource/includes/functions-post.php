@@ -1,16 +1,16 @@
 <?php
 
-add_action( "init", "wrp_resource_register_post_types" );
+add_action( "init", "cpt_resource_register_post_types" );
 
 /**
  * Register "Resource" post type
  *
  * @return void
  */
-function wrp_resource_register_post_types() {
+function cpt_resource_register_post_types() {
 
   // Customize or overwrite defaults
-  $args = wrp_resource_post_default_args( "resource" );
+  $args = cpt_resource_post_default_args( "resource" );
 
   $args["description"] = "Individual asset comprised of images, video, and documentation.";
   $args["taxonomies"] = ["category"];
@@ -23,9 +23,9 @@ function wrp_resource_register_post_types() {
   //flush_rewrite_rules();
 }
 
-add_filter( 'post_type_link', 'wrp_resource_post_type_link', 10, 2 );
+add_filter( 'post_type_link', 'cpt_resource_post_type_link', 10, 2 );
 
-function wrp_resource_post_type_link( $link, $post ) {
+function cpt_resource_post_type_link( $link, $post ) {
 
   if ( get_post_type( $post ) === 'resource' ) {
 
@@ -56,7 +56,7 @@ function wrp_resource_post_type_link( $link, $post ) {
 
 
 /*
- * wrp_resource_post_default_args
+ * cpt_resource_post_default_args
  *
  * Gets default args for post types
  *
@@ -64,14 +64,14 @@ function wrp_resource_post_type_link( $link, $post ) {
  * @param   string $label Capitalized slug of post type (optional)
  * @return  array
  */
-function wrp_resource_post_default_args( $slug, $label = '' ) {
+function cpt_resource_post_default_args( $slug, $label = '' ) {
   if ( empty( $label ) ) {
     $label = ucfirst( $slug );
   }
 
   return [
-    "label"                 => __( "{$label}s", "wrp" ),
-    "labels"                => wrp_resource_post_default_labels( $slug, $label ),
+    "label"                 => __( "{$label}s", "cpt" ),
+    "labels"                => cpt_resource_post_default_labels( $slug, $label ),
     "description"           => "Custom post type.",
     "public"                => true,
     "publicly_queryable"    => true,
@@ -99,7 +99,7 @@ function wrp_resource_post_default_args( $slug, $label = '' ) {
 }
 
 /*
- * wrp_resource_post_default_labels
+ * cpt_resource_post_default_labels
  *
  * Gets default labels for post types
  *
@@ -107,49 +107,49 @@ function wrp_resource_post_default_args( $slug, $label = '' ) {
  * @param   string $label Capitalized slug of post type (optional)
  * @return  array
  */
-function wrp_resource_post_default_labels( $slug, $label = '') {
+function cpt_resource_post_default_labels( $slug, $label = '') {
   if ( empty( $label ) ) {
     $label = ucfirst( $slug );
   }
 
   return [
-    "name"                  => __( "{$label}s", "Post type general name", "wrp" ),
-    "singular_name"         => __( "{$label}", "Post type singular name", "wrp" ),
-    "menu_name"             => __( "{$label}s", "Admin Menu text", "wrp" ),
-    "name_admin_bar"        => __( "{$label}", "Add New on Toolbar", "wrp" ),
-    "add_new"               => __( "Add New", "wrp" ),
-    "add_new_item"          => __( "Add New {$label}", "wrp" ),
-    "new_item"              => __( "New {$label}", "wrp" ),
-    "edit_item"             => __( "Edit {$label}", "wrp" ),
-    "view_item"             => __( "View {$label}", "wrp" ),
-    "all_items"             => __( "All {$label}s", "wrp" ),
-    "search_items"          => __( "Search {$label}s", "wrp" ),
-    "parent_item_colon"     => __( "Parent {$label}s:", "wrp" ),
-    "not_found"             => __( "No {$label}s found.", "wrp" ),
-    "not_found_in_trash"    => __( "No {$label}s found in Trash.", "wrp" ),
-    "item_published"        => __( "{$label} published", "wrp" ),
-    "item_published_privately"    => __( "{$label} published privately.", "wrp" ),
-    "item_reverted_to_draft"      => __( "{$label} reverted to draft.", "wrp" ),
-    "item_scheduled"        => __( "{$label} scheduled", "wrp" ),
-    "item_updated"          => __( "{$label} updated.", "wrp" ),
-    "insert_into_item"      => __( "Insert into {$label}", "wrp" ),
-    "uploaded_to_this_item" => __( "Upload to this {$label}", "wrp" ),
-    "filter_items_list"     => __( "Filter {$label} list", "wrp" ),
-    "items_list_navigation" => __( "{$label} list navigation", "wrp" ),
-    "items_list"            => __( "{$label} list", "wrp"),
-    "attributes"            => __( "{$label} attributes", "wrp" ),
+    "name"                  => __( "{$label}s", "Post type general name", "cpt" ),
+    "singular_name"         => __( "{$label}", "Post type singular name", "cpt" ),
+    "menu_name"             => __( "{$label}s", "Admin Menu text", "cpt" ),
+    "name_admin_bar"        => __( "{$label}", "Add New on Toolbar", "cpt" ),
+    "add_new"               => __( "Add New", "cpt" ),
+    "add_new_item"          => __( "Add New {$label}", "cpt" ),
+    "new_item"              => __( "New {$label}", "cpt" ),
+    "edit_item"             => __( "Edit {$label}", "cpt" ),
+    "view_item"             => __( "View {$label}", "cpt" ),
+    "all_items"             => __( "All {$label}s", "cpt" ),
+    "search_items"          => __( "Search {$label}s", "cpt" ),
+    "parent_item_colon"     => __( "Parent {$label}s:", "cpt" ),
+    "not_found"             => __( "No {$label}s found.", "cpt" ),
+    "not_found_in_trash"    => __( "No {$label}s found in Trash.", "cpt" ),
+    "item_published"        => __( "{$label} published", "cpt" ),
+    "item_published_privately"    => __( "{$label} published privately.", "cpt" ),
+    "item_reverted_to_draft"      => __( "{$label} reverted to draft.", "cpt" ),
+    "item_scheduled"        => __( "{$label} scheduled", "cpt" ),
+    "item_updated"          => __( "{$label} updated.", "cpt" ),
+    "insert_into_item"      => __( "Insert into {$label}", "cpt" ),
+    "uploaded_to_this_item" => __( "Upload to this {$label}", "cpt" ),
+    "filter_items_list"     => __( "Filter {$label} list", "cpt" ),
+    "items_list_navigation" => __( "{$label} list navigation", "cpt" ),
+    "items_list"            => __( "{$label} list", "cpt"),
+    "attributes"            => __( "{$label} attributes", "cpt" ),
   ];
 }
 
 /*
- * wrp_resource_post_default_caps
+ * cpt_resource_post_default_caps
  *
  * Gets default capabilities and output strings for post types
  *
  * @param   string $cap_type Slug or "post" type
  * @return  array
  */
-function wrp_resource_post_default_caps( $cap_type = "post" ) {
+function cpt_resource_post_default_caps( $cap_type = "post" ) {
   return [
     "capabilities" => [
       "create_posts"            => "create_{$cap_type}s",

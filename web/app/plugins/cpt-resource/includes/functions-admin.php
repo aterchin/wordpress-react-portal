@@ -1,13 +1,13 @@
 <?php
 
-add_action( 'restrict_manage_posts', 'wrp_resource_taxonomy_add_admin_filters', 10, 1 );
+add_action( 'restrict_manage_posts', 'cpt_resource_taxonomy_add_admin_filters', 10, 1 );
 
 /*
- * wrp_resource_taxonomy_add_admin_filters
+ * cpt_resource_taxonomy_add_admin_filters
  *
  * Hook adds filter for brand taxonomy posts
  */
-function wrp_resource_taxonomy_add_admin_filters( $post_type ){
+function cpt_resource_taxonomy_add_admin_filters( $post_type ){
 
   if( 'resource' !== $post_type ) {
     return;
@@ -34,16 +34,16 @@ function wrp_resource_taxonomy_add_admin_filters( $post_type ){
   }
 }
 
-add_action( 'manage_resource_posts_columns', 'wrp_resource_manage_posts_columns', 10, 2 );
+add_action( 'manage_resource_posts_columns', 'cpt_resource_manage_posts_columns', 10, 2 );
 
 /*
- * wrp_resource_custom_columns
+ * cpt_resource_custom_columns
  *
  * Filters the columns displayed in the Posts list table.
  * @see manage_post_type_posts_columns
  * @see
  */
-function wrp_resource_manage_posts_columns( $columns ) {
+function cpt_resource_manage_posts_columns( $columns ) {
 
   unset($columns['author']);
 
@@ -59,15 +59,15 @@ function wrp_resource_manage_posts_columns( $columns ) {
   return $new_columns;
 }
 
-add_action( 'manage_resource_posts_custom_column' , 'wrp_resource_manage_custom_column', 10, 2 );
+add_action( 'manage_resource_posts_custom_column' , 'cpt_resource_manage_custom_column', 10, 2 );
 
 /*
- * wrp_resource_custom_column
+ * cpt_resource_custom_column
  *
  * Hook fires for each custom column of a specific post type in the Posts list table.
  * @see manage_post_type_posts_custom_column
  */
-function wrp_resource_manage_custom_column( $column, $post_id ) {
+function cpt_resource_manage_custom_column( $column, $post_id ) {
   switch ( $column ) {
     case 'brand':
       $terms = wp_get_post_terms( $post_id, 'brands' );
@@ -90,7 +90,7 @@ function wrp_resource_manage_custom_column( $column, $post_id ) {
 }
 
 /*
- * wrp_resource_update_posts
+ * cpt_resource_update_posts
  *
  * Update all posts for whatever reason.  Maybe ordering isn't working cause you added a field
  * and some of those fields are null and resaving will fix it so the field is added.  Who knows?
@@ -98,9 +98,9 @@ function wrp_resource_manage_custom_column( $column, $post_id ) {
  *
  * Usage: /?update-resource-posts (assuming you're an admin)
  */
-add_action( 'wp_loaded', 'wrp_resource_update_posts' );
+add_action( 'wp_loaded', 'cpt_resource_update_posts' );
 
-function wrp_resource_update_posts() {
+function cpt_resource_update_posts() {
   // Check to see if we're an admin
   if ( current_user_can( 'manage_options' ) ) {
     if ( isset( $_REQUEST['update-resource-posts'] ) ) {

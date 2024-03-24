@@ -1,6 +1,6 @@
 <?php
 
-add_action( 'cmb2_init', 'wrp_resource_metaboxes' );
+add_action( 'cmb2_init', 'cpt_resource_metaboxes' );
 
 
 // @see https://cmb2.io/docs/field-types
@@ -8,7 +8,7 @@ add_action( 'cmb2_init', 'wrp_resource_metaboxes' );
 /**
  * Define the metabox and field configurations.
  */
-function wrp_resource_metaboxes() {
+function cpt_resource_metaboxes() {
 
   if (function_exists('new_cmb2_box')) {
     /**
@@ -17,7 +17,7 @@ function wrp_resource_metaboxes() {
     $cmb = new_cmb2_box(
       [
         'id'            => 'resource_assets_metabox',
-        'title'         => __( 'Assets', 'wrp-resource' ),
+        'title'         => __( 'Assets', 'cpt-resource' ),
         'object_types'  => ['resource'], // Post type
         'context'       => 'normal',
         'priority'      => 'high',

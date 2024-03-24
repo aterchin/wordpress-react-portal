@@ -1,6 +1,6 @@
 <?php
 
-function wrp_resource_mkdir($path) {
+function cpt_resource_mkdir($path) {
    return is_dir($path) || mkdir($path, 0775);
 }
 
@@ -9,7 +9,7 @@ function wrp_resource_mkdir($path) {
  *
  * @see wp-admin/includes/file.php
  */
-function wrp_resource_tempnam( $filename = '', $dir = '' ) {
+function cpt_resource_tempnam( $filename = '', $dir = '' ) {
 	if ( empty( $dir ) ) {
 		$dir = get_temp_dir();
 	}
@@ -24,7 +24,7 @@ function wrp_resource_tempnam( $filename = '', $dir = '' ) {
 
 	// If the folder is falsey, use its parent directory name instead.
 	if ( ! $temp_filename ) {
-		return wrp_resource_tempnam( dirname( $filename ), $dir );
+		return cpt_resource_tempnam( dirname( $filename ), $dir );
 	}
 
 	// Suffix some random data to avoid filename conflicts.
@@ -36,7 +36,7 @@ function wrp_resource_tempnam( $filename = '', $dir = '' ) {
 }
 
 // creates a zip file, what else?
-function wrp_resource_create_zip($files = [], $destination = '', $overwrite = false) {
+function cpt_resource_create_zip($files = [], $destination = '', $overwrite = false) {
 
   if (file_exists($destination) && !$overwrite) {
     return false;

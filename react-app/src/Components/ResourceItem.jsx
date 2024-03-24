@@ -34,7 +34,7 @@ function ResourceItem({ item, totalItems }) {
     e.preventDefault();
     (async () => {
       const response = await axios.get(
-        import.meta.env.VITE_API_URL + `/wp-json/wrp-resource/v1/download/${item.id}`,
+        import.meta.env.VITE_API_URL + `/wp-json/cpt-resource/v1/download/${item.id}`,
         {
           responseType: "arraybuffer",
           headers: {
